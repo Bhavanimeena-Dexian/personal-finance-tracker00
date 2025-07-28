@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Trash2, DollarSign, TrendingUp, TrendingDown, Filter, X } from 'lucide-react';
+import { Plus, Trash2, DollarSign, TrendingUp, TrendingDown, Filter, X, Info, Lightbulb } from 'lucide-react';
 
 interface Transaction {
   id: string;
@@ -278,6 +278,72 @@ export default function FinanceTracker() {
           )}
         </div>
 
+        {/* How to Use Instructions */}
+        <div className="glass-card p-6 mb-6 animate-slide-up">
+          <div className="flex items-center gap-3 mb-4">
+            <Info className="text-primary-glow" size={24} />
+            <h2 className="text-xl font-bold text-foreground">How to Use This App</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-muted-foreground">
+            <div className="space-y-2">
+              <p><span className="text-foreground font-medium">➕ Add Transactions:</span> Click "Add Transaction" to record income or expenses</p>
+              <p><span className="text-foreground font-medium">🔍 Filter View:</span> Use All/Income/Expenses buttons to filter your transactions</p>
+              <p><span className="text-foreground font-medium">📊 Track Balance:</span> Monitor your financial health with real-time balance updates</p>
+            </div>
+            <div className="space-y-2">
+              <p><span className="text-foreground font-medium">🗂️ Categorize:</span> Organize transactions by category for better insights</p>
+              <p><span className="text-foreground font-medium">🗑️ Delete:</span> Remove incorrect transactions using the trash icon</p>
+              <p><span className="text-foreground font-medium">💾 Auto-Save:</span> Your data is automatically saved to your browser</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Personal Finance Tips */}
+        <div className="glass-card p-6 mb-6 animate-slide-up">
+          <div className="flex items-center gap-3 mb-4">
+            <Lightbulb className="text-yellow-400" size={24} />
+            <h2 className="text-xl font-bold text-foreground">Smart Finance Tips</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">💡 Budgeting Basics</h3>
+              <div className="space-y-2 text-muted-foreground text-sm">
+                <p>• Follow the 50/30/20 rule: 50% needs, 30% wants, 20% savings</p>
+                <p>• Track every expense, no matter how small</p>
+                <p>• Set monthly spending limits for each category</p>
+                <p>• Review your expenses weekly to stay on track</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">🎯 Saving Strategies</h3>
+              <div className="space-y-2 text-muted-foreground text-sm">
+                <p>• Build an emergency fund worth 6 months of expenses</p>
+                <p>• Automate your savings - pay yourself first</p>
+                <p>• Start investing early, even small amounts help</p>
+                <p>• Compare prices before making large purchases</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">🚫 Avoid These Mistakes</h3>
+              <div className="space-y-2 text-muted-foreground text-sm">
+                <p>• Don't ignore small recurring subscriptions</p>
+                <p>• Avoid impulse buying - wait 24 hours for big purchases</p>
+                <p>• Don't rely solely on credit cards</p>
+                <p>• Never skip tracking your expenses</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">📈 Indian Finance Tips</h3>
+              <div className="space-y-2 text-muted-foreground text-sm">
+                <p>• Invest in PPF and ELSS for tax savings</p>
+                <p>• Use UPI and digital payments for better tracking</p>
+                <p>• Consider SIPs in mutual funds for long-term wealth</p>
+                <p>• Take advantage of cashback and reward programs</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Add Transaction Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
@@ -356,10 +422,10 @@ export default function FinanceTracker() {
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                    className="input-glass"
+                    className="select-glass"
                   >
                     {categories[formData.type].map(category => (
-                      <option key={category} value={category} className="bg-primary text-foreground">
+                      <option key={category} value={category}>
                         {categoryIcons[category]} {category}
                       </option>
                     ))}
